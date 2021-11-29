@@ -26,7 +26,7 @@ namespace WindowsFormsAppTestLogIn
             InitializeComponent();
             this.Text = "Log In Test";
             this.Width = 300;
-            this.Height = 300;
+            this.Height = 200;
             
             tlp = new TableLayoutPanel();
             tlp.ColumnCount = 2;
@@ -49,7 +49,9 @@ namespace WindowsFormsAppTestLogIn
             
             bt = new Button();
             bt.Text = "Login";
-            bt.Dock = DockStyle.Fill;
+            bt.Width = 100;
+            // bt.Height = 50;
+            bt.Dock = DockStyle.Bottom;
             tlp.SetColumnSpan(bt, 2);
 
             username = new TextBox();
@@ -69,13 +71,16 @@ namespace WindowsFormsAppTestLogIn
             bt.Click += new EventHandler(LoginButtonClick);
         }
         
-        string constr = @"Data Source = PC\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True";
+        // string constr = @"Data Source = PC\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True";
+        // string constr = @"Data Source = 127.0.0.1:3306;Initial Catalog=test_login;Integrated Security=True";
+        string constr = @"Data Source = localhost;Initial Catalog=test_login;Integrated Security=True";
  
         private void LoginButtonClick(Object sender, EventArgs e)
         {
             DataTable dataTable = new DataTable();
  
-            string sql = "SELECT * FROM login_test WHERE [USER_NAME] = " + "'" + username.Text + "'" + " AND [PASSWORD] = " + "'" + password.Text + "'";
+            // string sql = "SELECT * FROM login_test WHERE [USER_NAME] = " + "'" + username.Text + "'" + " AND [PASSWORD] = " + "'" + password.Text + "'";
+            string sql = "SELECT * FROM test_table WHERE [USER_NAME] = " + "'" + username.Text + "'" + " AND [PASSWORD] = " + "'" + password.Text + "'";
  
             using (SqlConnection conn = new SqlConnection(constr))
             {
