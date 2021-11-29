@@ -13,7 +13,7 @@ namespace WindowsFormsAppTestLogIn
 {
     public partial class Form1 : Form
     {
-        private Label lb, lb2, lb3;
+        private Label lb, lb2, lb3, lb4;
         private Button bt;
         private TextBox username;
         private TextBox password;
@@ -30,7 +30,7 @@ namespace WindowsFormsAppTestLogIn
             
             tlp = new TableLayoutPanel();
             tlp.ColumnCount = 2;
-            tlp.RowCount = 4;
+            tlp.RowCount = 5;
             tlp.Dock = DockStyle.Fill;
 
             lb = new Label();
@@ -46,6 +46,11 @@ namespace WindowsFormsAppTestLogIn
             lb3 = new Label();
             lb3.Text = "Password: ";
             lb3.Dock = DockStyle.Fill;
+            
+            lb4 = new Label();
+            // lb4.Text = "Label For Test.";
+            lb4.Text = "";
+            lb4.Dock = DockStyle.Fill;
             
             bt = new Button();
             bt.Text = "Login";
@@ -64,17 +69,25 @@ namespace WindowsFormsAppTestLogIn
             username.Parent = tlp;
             lb3.Parent = tlp;
             password.Parent = tlp;
+            lb4.Parent = tlp;
             bt.Parent = tlp;
 
             tlp.Parent = this;
             
-            bt.Click += new EventHandler(LoginButtonClick);
+            // bt.Click += new EventHandler(LoginButtonClick);
+            bt.Click += new EventHandler(BtClick);
         }
         
         // string constr = @"Data Source = PC\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True";
         // string constr = @"Data Source = 127.0.0.1:3306;Initial Catalog=test_login;Integrated Security=True";
         string constr = @"Data Source = localhost;Initial Catalog=test_login;Integrated Security=True";
- 
+
+        private void BtClick(Object sender, EventArgs e)
+        {
+            // TextBox temp = (TextBox)sender;
+            lb4.Text = username.Text + " : " + password.Text;
+        }
+        
         private void LoginButtonClick(Object sender, EventArgs e)
         {
             DataTable dataTable = new DataTable();
